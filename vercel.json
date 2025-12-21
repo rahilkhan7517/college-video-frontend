@@ -1,0 +1,8 @@
+{
+  "buildCommand": "npm install && npm run build",
+  "devCommand": "vite",
+  "installCommand": "npm ci --prefer-offline --no-audit",
+  "env": {
+    "VITE_API_URL": "https://college-video-portal.onrender.com"
+  }
+}
