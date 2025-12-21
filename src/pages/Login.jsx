@@ -25,7 +25,7 @@ export default function Login() {
     }
 
     if (password.length < 6) {
-      setError("Password is Wrong");
+      setError("Fill The Correct Details");
       return;
     }
 
@@ -50,7 +50,7 @@ export default function Login() {
           alt="Google"
         />
         <h2>Verified Access</h2>
-        <p>Continue to Portal</p>
+        <p>Access To Content Is Protected & Secured</p>
 
         {error && <p style={{ color: "red", fontSize: "14px" }}>{error}</p>}
 
