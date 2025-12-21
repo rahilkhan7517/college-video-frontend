@@ -8,6 +8,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/video" element={<Videos />} />
         <Route path="/videos" element={<Videos />} />
       </Routes>
     </BrowserRouter>
