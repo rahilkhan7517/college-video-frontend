@@ -13,12 +13,12 @@ export default function Videos() {
 
       <div className="video-grid">
         <iframe
-          src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1"
+          src="https://www.youtube.com/embed/r8Fh-I3rMsA"
           allowFullScreen
         ></iframe>
 
         <iframe
-          src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2"
+          src="https://www.youtube.com/embed/tLhfjt8sMoo"
           allowFullScreen
         ></iframe>
       </div>
