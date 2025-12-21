@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import API from "../api";
 
-export default function Video() {
+export default function Videos() {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -15,14 +16,18 @@ export default function Video() {
     // Fetch videos from backend
     const fetchVideos = async () => {
       try {
+        setLoading(true);
         const res = await API.get("/videos");
-        setVideos(res.data.videos);
+        console.log("Videos fetched:", res.data);
+        setVideos(res.data.videos || []);
+        setError(null);
       } catch (error) {
         console.error("Failed to fetch videos:", error);
+        setError("Failed to load videos. Showing demo content.");
         // Fallback to demo videos if API fails
         setVideos([
-          { _id: 1, title: "Video 1", videoId: "YOUR_VIDEO_ID_1" },
-          { _id: 2, title: "Video 2", videoId: "YOUR_VIDEO_ID_2" },
+          { _id: 1, title: "Intro Video", videoId: "dQw4w9WgXcQ", description: "Demo video" },
+          { _id: 2, title: "Tutorial", videoId: "jNQXAC9IVRw", description: "Sample tutorial" },
         ]);
       } finally {
         setLoading(false);
@@ -33,27 +38,36 @@ export default function Video() {
   }, []);
 
   if (loading) {
-    return <div className="video-wrapper"><h2>Loading videos...</h2></div>;
+    return (
+      <div className="video-wrapper">
+        <h1>🎓 College Function Videos</h1>
+        <h2>Loading videos...</h2>
+      </div>
+    );
   }
 
   return (
     <div className="video-wrapper">
       <h1>🎓 College Function Videos</h1>
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
       <div className="video-grid">
-        {videos.length > 0 ? (
+        {videos && videos.length > 0 ? (
           videos.map((video) => (
             <div key={video._id} className="video-item">
-              <h3>{video.title}</h3>
-              <iframe
-                src={`https://www.youtube.com/embed/${video.videoId}`}
-                allowFullScreen
-              ></iframe>
+              <h3>{video.title || "Untitled Video"}</h3>
+              {video.videoId && (
+                <iframe
+                  src={`https://www.youtube.com/embed/${video.videoId}`}
+                  allowFullScreen
+                  title={video.title}
+                ></iframe>
+              )}
               {video.description && <p>{video.description}</p>}
             </div>
           ))
         ) : (
-          <p>No videos available</p>
+          <p>No videos available. Please add videos to the database.</p>
         )}
       </div>
     </div>
