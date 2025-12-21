@@ -16,7 +16,7 @@ export default function Videos() {
 
   return (
     <div className="video-wrapper">
-      <h1>🎓 College Function Videos</h1>
+      <h1>🎓 Access is Protected & Secured</h1>
 
       <div className="video-grid">
         {videos.map((video) => (
