@@ -34,44 +34,45 @@ body {
 }
 
 .login-card input {
-  width: 100%;
+  width: calc(100% - 24px);
   padding: 12px;
   margin-top: 12px;
   border: 1px solid #dadce0;
   border-radius: 6px;
   font-size: 14px;
-  box-sizing: border-box;
 }
 
 .password-input-wrapper {
   position: relative;
-  margin-top: 12px;
   width: 100%;
+  margin-top: 12px;
+  display: block;
 }
 
 .password-input-wrapper input {
-  width: 100%;
-  padding: 12px 40px 12px 12px;
+  width: calc(100% - 24px - 40px);
+  padding: 12px;
+  padding-right: 40px;
   border: 1px solid #dadce0;
   border-radius: 6px;
   font-size: 14px;
   margin: 0;
-  box-sizing: border-box;
 }
 
 .toggle-password {
   position: absolute;
   right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 12px;
   background: none;
   border: none;
   cursor: pointer;
   font-size: 18px;
-  padding: 5px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 30px;
+  height: 30px;
   transition: opacity 0.2s;
 }
 
