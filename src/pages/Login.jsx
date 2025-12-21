@@ -51,14 +51,14 @@ export default function Login() {
 
         <input
           placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           type="email"
         />
         <input
-          placeholder="Pass word"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          placeholder="Password"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           
         />
 
