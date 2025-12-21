@@ -16,7 +16,7 @@ export default function Videos() {
 
   return (
     <div className="video-wrapper">
-      <h1>🎓 Access is Protected & Secured</h1>
+      <h1>🎓 Access is Protected & Secured. Only Authorised Access</h1>
 
       <div className="video-grid">
         {videos.map((video) => (

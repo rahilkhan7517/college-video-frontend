@@ -51,12 +51,12 @@ export default function Login() {
           alt="Google"
         />
         <h2>Verified Access</h2>
-        <p>Only Authorised Google Account Can Access. </p>
+        <p>Sign In To Continue.</p>
 
         {error && <p style={{ color: "red", fontSize: "14px" }}>{error}</p>}
 
         <input
-          placeholder="Gmail Address"
+          placeholder="Enter Your Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           type="email"
@@ -64,7 +64,7 @@ export default function Login() {
         
         <div className="password-input-wrapper">
           <input
-            placeholder="Password"
+            placeholder="Enter Your Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type={showPassword ? "text" : "password"}
