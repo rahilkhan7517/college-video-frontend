@@ -26,8 +26,8 @@ export default function Videos() {
         setError("Failed to load videos. Showing demo content.");
         // Fallback to demo videos if API fails
         setVideos([
-          { _id: 1, title: "Intro Video", videoId: "dQw4w9WgXcQ", description: "Demo video" },
-          { _id: 2, title: "Tutorial", videoId: "jNQXAC9IVRw", description: "Sample tutorial" },
+          { _id: 1, title: "College Function Video 1", videoId: "r8Fh-I3rMsA", description: "College event video" },
+          { _id: 2, title: "College Function Video 2", videoId: "tLhfjt8sMoo", description: "College function highlights" },
         ]);
       } finally {
         setLoading(false);
