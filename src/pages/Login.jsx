@@ -29,8 +29,9 @@ export default function Login() {
       const res = await API.post("/login", { name, email });
       localStorage.setItem("token", res.data.token);
       window.location.href = "/video";
-    } catch {
-      setError("Login failed. Please try again.");
+    } catch (error) {
+      console.error("Login error:", error);
+      setError(error.response?.data?.message || "Login failed. Please try again.");
     } finally {
       setLoading(false);
     }
