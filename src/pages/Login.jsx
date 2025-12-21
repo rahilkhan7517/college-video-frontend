@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import API from "../api";
 
 export default function Login() {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -14,7 +14,7 @@ export default function Login() {
   const handleLogin = async () => {
     setError("");
 
-    if (!name || !email) {
+    if (!email || !password) {
       setError("Enter all details");
       return;
     }
@@ -24,9 +24,14 @@ export default function Login() {
       return;
     }
 
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return;
+    }
+
     try {
       setLoading(true);
-      const res = await API.post("/login", { name, email });
+      const res = await API.post("/login", { email, password });
       localStorage.setItem("token", res.data.token);
       window.location.href = "/video";
     } catch (error) {
@@ -50,16 +55,16 @@ export default function Login() {
         {error && <p style={{ color: "red", fontSize: "14px" }}>{error}</p>}
 
         <input
-          placeholder="Email"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          placeholder="Gmail Address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           type="email"
         />
         <input
           placeholder="Password"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
         />
 
         <button onClick={handleLogin} disabled={loading}>
