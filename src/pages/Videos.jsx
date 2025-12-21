@@ -1,8 +1,7 @@
 import React from "react";
-
 import { useEffect } from "react";
 
-export default function Video() {
+export default function Videos() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) window.location.href = "/";
