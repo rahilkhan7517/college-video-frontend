@@ -122,14 +122,13 @@ body {
 
 .google-button-group {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 12px;
   margin-top: 32px;
 }
 
 .google-button-secondary,
 .google-button-primary {
-  flex: 1;
   padding: 10px 24px;
   font-size: 15px;
   font-weight: 500;
@@ -155,6 +154,7 @@ body {
 .google-button-primary {
   background: #1a73e8;
   color: white;
+  min-width: 100px;
 }
 
 .google-button-primary:hover:not(:disabled) {

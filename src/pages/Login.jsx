@@ -47,18 +47,15 @@ export default function Login() {
     <div className="google-login-wrapper">
       <div className="google-login-container">
         <div className="google-logo">
-          <svg width="75" height="24" viewBox="0 0 75 24" xmlns="http://www.w3.org/2000/svg">
-            <text x="0" y="20" fontSize="24" fontFamily="Arial, sans-serif" fill="#4285F4">G</text>
-            <text x="18" y="20" fontSize="24" fontFamily="Arial, sans-serif" fill="#EA4335">o</text>
-            <text x="32" y="20" fontSize="24" fontFamily="Arial, sans-serif" fill="#FBBC05">o</text>
-            <text x="46" y="20" fontSize="24" fontFamily="Arial, sans-serif" fill="#4285F4">g</text>
-            <text x="60" y="20" fontSize="24" fontFamily="Arial, sans-serif" fill="#34A853">l</text>
-            <text x="68" y="20" fontSize="24" fontFamily="Arial, sans-serif" fill="#EA4335">e</text>
-          </svg>
+          <img 
+            src="https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" 
+            alt="Google"
+            style={{ height: "32px", width: "auto" }}
+          />
         </div>
 
         <h1 className="google-login-title">Sign in</h1>
-        <p className="google-login-subtitle">Access your college videos</p>
+        <p className="google-login-subtitle">Access is protected</p>
 
         {error && <div className="google-error-message">{error}</div>}
 
@@ -91,7 +88,6 @@ export default function Login() {
         </div>
 
         <div className="google-button-group">
-          <button className="google-button-secondary">Create account</button>
           <button 
             className="google-button-primary" 
             onClick={handleLogin} 
