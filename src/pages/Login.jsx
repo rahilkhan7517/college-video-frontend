@@ -55,7 +55,7 @@ export default function Login() {
         </div>
 
         <h1 className="google-login-title">Sign in</h1>
-        <p className="google-login-subtitle">Access is Authorised</p>
+        <p className="google-login-subtitle">Access is protected and logged for security</p>
 
         {error && <div className="google-error-message">{error}</div>}
 
@@ -93,7 +93,7 @@ export default function Login() {
             onClick={handleLogin} 
             disabled={loading}
           >
-            {loading ? "Wait Verifying..." : "Verify"}
+            {loading ? "Wait Verifying..." : "Verify & Continue"}
           </button>
         </div>
       </div>
