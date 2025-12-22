@@ -93,7 +93,7 @@ export default function Login() {
             onClick={handleLogin} 
             disabled={loading}
           >
-            {loading ? "Wait Verifying..." : "Verify & Continue"}
+            {loading ? "Wait Verifying..." : "Verify"}
           </button>
         </div>
       </div>
