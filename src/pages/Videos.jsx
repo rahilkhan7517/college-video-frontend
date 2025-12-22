@@ -1,6 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function Videos() {
+  const [fullscreenId, setFullscreenId] = useState(null);
+  const fullscreenRefs = useRef({});
+
   const videos = [
     { _id: 1, title: "College Function Video 1", videoId: "r8Fh-I3rMsA", description: "College event video" },
     { _id: 2, title: "College Function Video 2", videoId: "tLhfjt8sMoo", description: "College function highlights" },
@@ -14,6 +17,30 @@ export default function Videos() {
     }
   }, []);
 
+  const handleFullscreen = (videoId) => {
+    const element = fullscreenRefs.current[videoId];
+    if (element) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+        setFullscreenId(null);
+      } else {
+        element.requestFullscreen().then(() => {
+          setFullscreenId(videoId);
+        });
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement) {
+        setFullscreenId(null);
+      }
+    };
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  }, []);
+
   return (
     <div className="video-wrapper">
       <h1>🎓 Access is Protected & Secured. Only Authorised Access</h1>
@@ -21,12 +48,22 @@ export default function Videos() {
       <div className="video-grid">
         {videos.map((video) => (
           <div key={video._id} className="video-item">
-            <div className="video-container">
+            <div 
+              className="video-container"
+              ref={(el) => (fullscreenRefs.current[video._id] = el)}
+            >
               <iframe
                 src={`https://www.youtube-nocookie.com/embed/${video.videoId}?rel=0&modestbranding=1&fs=0&controls=1&showinfo=0`}
                 title={video.title}
                 allow="encrypted-media"
               ></iframe>
+              <button 
+                className="fullscreen-btn"
+                onClick={() => handleFullscreen(video._id)}
+                title={fullscreenId === video._id ? "Exit Fullscreen" : "View Fullscreen"}
+              >
+                {fullscreenId === video._id ? "✕" : "⛶"}
+              </button>
             </div>
             <h3>{video.title}</h3>
             {video.description && <p>{video.description}</p>}
