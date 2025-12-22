@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 export default function Videos() {
   const [fullscreenId, setFullscreenId] = useState(null);
-  const [quality, setQuality] = useState("auto");
+  const [quality, setQuality] = useState("360p");
   const [rotation, setRotation] = useState(0);
   const fullscreenRefs = useRef({});
 
@@ -82,7 +82,7 @@ export default function Videos() {
                 </div>
               )}
 
-              <div className="video-content">
+              <div className="video-content" style={fullscreenId === video._id ? {} : { display: "none" }}>
                 <iframe
                   src={video.type === "drive" 
                     ? `https://drive.google.com/file/d/${video.driveId}/preview`
@@ -93,8 +93,8 @@ export default function Videos() {
                 ></iframe>
               </div>
 
-              <div className="youtube-controls">
-                {video.type === "drive" && (
+              <div className="youtube-controls" style={fullscreenId === video._id ? {} : { position: "relative", bottom: "auto", right: "auto", opacity: 1, padding: "16px" }}>
+                {video.type === "drive" && fullscreenId === video._id && (
                   <div className="quality-dropdown">
                     <select 
                       value={quality} 
@@ -102,7 +102,6 @@ export default function Videos() {
                       className="youtube-quality-select"
                       title="Video Quality"
                     >
-                      <option value="auto">Auto</option>
                       <option value="360p">360p</option>
                       <option value="480p">480p</option>
                       <option value="720p">720p</option>
@@ -126,7 +125,7 @@ export default function Videos() {
                   onClick={() => handleFullscreen(video._id)}
                   title={fullscreenId === video._id ? "Exit Fullscreen" : "Enter Fullscreen"}
                 >
-                  {fullscreenId === video._id ? "⛶" : "⛶"}
+                  {fullscreenId === video._id ? "✕" : "⛶ Fullscreen"}
                 </button>
               </div>
             </div>
