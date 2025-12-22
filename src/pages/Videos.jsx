@@ -5,8 +5,8 @@ export default function Videos() {
   const fullscreenRefs = useRef({});
 
   const videos = [
-    { _id: 1, title: "College Function Video 1", videoId: "r8Fh-I3rMsA", description: "College event video" },
-    { _id: 2, title: "College Function Video 2", videoId: "tLhfjt8sMoo", description: "College function highlights" },
+    { _id: 1, title: "College Function Video 1", type: "drive", driveId: "1ZSgaHj3NDQen5T_Xnfw6TRMSqECA0WuU", description: "College event video" },
+    { _id: 2, title: "College Function Video 2", type: "youtube", videoId: "tLhfjt8sMoo", description: "College function highlights" },
   ];
 
   useEffect(() => {
@@ -53,9 +53,12 @@ export default function Videos() {
               ref={(el) => (fullscreenRefs.current[video._id] = el)}
             >
               <iframe
-                src={`https://www.youtube-nocookie.com/embed/${video.videoId}?rel=0&modestbranding=1&fs=0&controls=1&showinfo=0`}
+                src={video.type === "drive" 
+                  ? `https://drive.google.com/file/d/${video.driveId}/preview`
+                  : `https://www.youtube-nocookie.com/embed/${video.videoId}?rel=0&modestbranding=1&fs=0&controls=1&showinfo=0`
+                }
                 title={video.title}
-                allow="encrypted-media"
+                allow={video.type === "drive" ? "" : "encrypted-media"}
               ></iframe>
               <button 
                 className="fullscreen-btn"
