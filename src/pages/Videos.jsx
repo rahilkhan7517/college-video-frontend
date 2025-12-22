@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 
 export default function Videos() {
   const [fullscreenId, setFullscreenId] = useState(null);
+  const [quality, setQuality] = useState("auto");
+  const [widescreen, setWidescreen] = useState(false);
   const fullscreenRefs = useRef({});
 
   const videos = [
@@ -31,6 +33,14 @@ export default function Videos() {
     }
   };
 
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
+  const toggleWidescreen = () => {
+    setWidescreen(!widescreen);
+  };
+
   useEffect(() => {
     const handleFullscreenChange = () => {
       if (!document.fullscreenElement) {
@@ -45,13 +55,23 @@ export default function Videos() {
     <div className="video-wrapper">
       <h1>🎓 Access is Protected & Secured. Only Authorised Access</h1>
 
-      <div className="video-grid">
+      <div className="video-grid" style={widescreen ? { gridTemplateColumns: "1fr" } : {}}>
         {videos.map((video) => (
           <div key={video._id} className="video-item">
             <div 
-              className="video-container"
+              className={`video-container ${widescreen ? "widescreen" : ""}`}
               ref={(el) => (fullscreenRefs.current[video._id] = el)}
             >
+              <div className="video-controls-top">
+                <button 
+                  className="control-btn back-btn"
+                  onClick={handleGoBack}
+                  title="Go Back"
+                >
+                  ← Back
+                </button>
+              </div>
+              
               <iframe
                 src={video.type === "drive" 
                   ? `https://drive.google.com/file/d/${video.driveId}/preview`
@@ -60,13 +80,41 @@ export default function Videos() {
                 title={video.title}
                 allow={video.type === "drive" ? "" : "encrypted-media"}
               ></iframe>
-              <button 
-                className="fullscreen-btn"
-                onClick={() => handleFullscreen(video._id)}
-                title={fullscreenId === video._id ? "Exit Fullscreen" : "View Fullscreen"}
-              >
-                {fullscreenId === video._id ? "✕" : "⛶"}
-              </button>
+
+              <div className="video-controls-bottom">
+                {video.type === "drive" && (
+                  <>
+                    <div className="quality-dropdown">
+                      <select 
+                        value={quality} 
+                        onChange={(e) => setQuality(e.target.value)}
+                        className="quality-select"
+                        title="Video Quality"
+                      >
+                        <option value="auto">Quality: Auto</option>
+                        <option value="360p">Quality: 360p</option>
+                        <option value="480p">Quality: 480p</option>
+                        <option value="720p">Quality: 720p</option>
+                        <option value="1080p">Quality: 1080p</option>
+                      </select>
+                    </div>
+                    <button 
+                      className={`control-btn widescreen-btn ${widescreen ? "active" : ""}`}
+                      onClick={toggleWidescreen}
+                      title={widescreen ? "Exit Widescreen" : "Enter Widescreen"}
+                    >
+                      {widescreen ? "Exit Wide ⊡" : "Widescreen ⛶"}
+                    </button>
+                  </>
+                )}
+                <button 
+                  className="control-btn fullscreen-btn"
+                  onClick={() => handleFullscreen(video._id)}
+                  title={fullscreenId === video._id ? "Exit Fullscreen" : "View Fullscreen"}
+                >
+                  {fullscreenId === video._id ? "✕" : "⛶"}
+                </button>
+              </div>
             </div>
             <h3>{video.title}</h3>
             {video.description && <p>{video.description}</p>}
