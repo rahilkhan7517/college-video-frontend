@@ -23,10 +23,9 @@ export default function Videos() {
           <div key={video._id} className="video-item">
             <div className="video-container">
               <iframe
-                src={`https://www.youtube.com/embed/${video.videoId}?rel=0&modestbranding=1&controls=1`}
-                allowFullScreen
+                src={`https://www.youtube-nocookie.com/embed/${video.videoId}?rel=0&modestbranding=1&fs=0&controls=1&showinfo=0`}
                 title={video.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allow="encrypted-media"
               ></iframe>
             </div>
             <h3>{video.title}</h3>
