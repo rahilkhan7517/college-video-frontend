@@ -26,7 +26,7 @@ export default function Login() {
     }
 
     if (password.length < 6) {
-      setError("Incorrect Password");
+      setError("Incorrect. Try Again");
       return;
     }
 
@@ -55,7 +55,7 @@ export default function Login() {
         </div>
 
         <h1 className="google-login-title">Sign in</h1>
-        <p className="google-login-subtitle">Access is protected</p>
+        <p className="google-login-subtitle">Access is Authorised</p>
 
         {error && <div className="google-error-message">{error}</div>}
 
