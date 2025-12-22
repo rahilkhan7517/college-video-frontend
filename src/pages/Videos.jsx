@@ -21,12 +21,15 @@ export default function Videos() {
       <div className="video-grid">
         {videos.map((video) => (
           <div key={video._id} className="video-item">
+            <div className="video-container">
+              <iframe
+                src={`https://www.youtube.com/embed/${video.videoId}?rel=0&modestbranding=1&controls=1`}
+                allowFullScreen
+                title={video.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              ></iframe>
+            </div>
             <h3>{video.title}</h3>
-            <iframe
-              src={`https://www.youtube.com/embed/${video.videoId}`}
-              allowFullScreen
-              title={video.title}
-            ></iframe>
             {video.description && <p>{video.description}</p>}
           </div>
         ))}

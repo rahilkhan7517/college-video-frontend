@@ -62,7 +62,7 @@ export default function Login() {
         <div className="google-form-group">
           <input
             className="google-input"
-            placeholder="Email or phone"
+            placeholder="Enter Email "
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
@@ -72,7 +72,7 @@ export default function Login() {
         <div className="google-form-group password-group">
           <input
             className="google-input"
-            placeholder="Enter password"
+            placeholder="Enter Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type={showPassword ? "text" : "password"}
@@ -93,7 +93,7 @@ export default function Login() {
             onClick={handleLogin} 
             disabled={loading}
           >
-            {loading ? "Signing in..." : "Next"}
+            {loading ? "Signing in..." : "Verify"}
           </button>
         </div>
       </div>
