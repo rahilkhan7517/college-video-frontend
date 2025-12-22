@@ -21,12 +21,12 @@ export default function Login() {
     }
 
     if (!isValidGmail(email)) {
-      setError("Please enter a valid Gmail address (@gmail.com)");
+      setError("Incorrect Email Address");
       return;
     }
 
     if (password.length < 6) {
-      setError("Password must be at least 6 characters");
+      setError("Incorrect Password");
       return;
     }
 
@@ -83,7 +83,7 @@ export default function Login() {
             onClick={() => setShowPassword(!showPassword)}
             title={showPassword ? "Hide password" : "Show password"}
           >
-            {showPassword ? "👁️" : "👁️‍🗨️"}
+            {showPassword ? "" : "👁️‍🗨️"}
           </button>
         </div>
 
@@ -93,7 +93,7 @@ export default function Login() {
             onClick={handleLogin} 
             disabled={loading}
           >
-            {loading ? "Signing in..." : "Verify"}
+            {loading ? "Wait Verifying..." : "Verify"}
           </button>
         </div>
       </div>
