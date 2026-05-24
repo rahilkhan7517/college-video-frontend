@@ -7,8 +7,8 @@ export default function Videos() {
   const fullscreenRefs = useRef({});
 
   const videos = [
-    { _id: 1, title: "College Function Video 1", type: "drive", driveId: "1ZSgaHj3NDQen5T_Xnfw6TRMSqECA0WuU", description: "College event video" },
-    { _id: 2, title: "College Function Video 2", type: "youtube", videoId: "tLhfjt8sMoo", description: "College function highlights" },
+    { _id: 1, title: "College Freshers Video 1", type: "drive",  description: "College event video" },
+    { _id: 2, title: "College Party Video 2", type: "youtube",  description: "College function highlights" },
   ];
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function Videos() {
 
   return (
     <div className="video-wrapper">
-      <h1>🎓 Access is Protected & Secured. Only Authorised Access</h1>
+      <h1>🎓Full Video clips Cannot Be Showed. Access appears unauthorized — please verify your entered login  or Make Sure Not Login With Other Accounts."</h1>
 
       <div className="video-grid">
         {videos.map((video) => (
