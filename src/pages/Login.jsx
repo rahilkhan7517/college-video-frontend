@@ -83,7 +83,7 @@ export default function Login() {
             onClick={() => setShowPassword(!showPassword)}
             title={showPassword ? "Hide password" : "Show password"}
           >
-            {showPassword ? "" : "👁️‍🗨️"}
+            {showPassword ? "" : "👁"}
           </button>
         </div>
 
